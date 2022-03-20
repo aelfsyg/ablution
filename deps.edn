@@ -1,11 +1,41 @@
 {:aliases  {:dev {:extra-paths ["development/src"]
-                  :extra-deps {org.clojure/clojure {:mvn/version "1.10.3"}
-                               org.clojure/tools.deps.alpha {:mvn/version "0.12.1003"}}}
+                  :extra-deps {cider/cider-nrepl {:mvn/version "0.18.0"}
+                               clojure.java-time/clojure.java-time {:mvn/version "0.3.3"}
+                               com.xtdb/xtdb-core {:mvn/version "1.20.0"}
+                               com.xtdb/xtdb-jdbc {:mvn/version "1.20.0"}
+                               com.xtdb/xtdb-lucene {:mvn/version "1.20.0"}
+                               com.xtdb/xtdb-rocksdb {:mvn/version "1.20.0"}
+                               danlentz/clj-uuid {:mvn/version "0.1.9"}
+                               metosin/spec-tools {:mvn/version "0.10.5"}
+                               org.clojure/clojure {:mvn/version "1.11.0-rc1"}
+                               org.clojure/test.check {:mvn/version "0.9.0"}
+                               org.clojure/tools.deps.alpha {:mvn/version "0.12.1003"}
+                               org.postgresql/postgresql {:mvn/version "42.2.18"}
+                               poly/address {:local/root "components/address"}
+                               poly/base {:local/root "components/base"}
+                               poly/customer {:local/root "components/customer"}
+                               poly/db {:local/root "components/db"}
+                               poly/employee {:local/root "components/employee"}
+                               poly/laundry {:local/root "components/laundry"}
+                               poly/person {:local/root "components/person"}
+                               poly/property {:local/root "components/property"}
+                               poly/vehicle {:local/root "components/vehicle"}}}
 
-            :test {:extra-paths []}
+            :nREPL {:extra-deps {nrepl/nrepl {:mvn/version "0.9.0"}
+                                 cider/piggieback {:mvn/version "0.4.2"}}}
+
+            :test {:extra-paths ["components/address/test"
+                                 "components/base/test"
+                                 "components/customer/test"
+                                 "components/db/test"
+                                 "components/employee/test"
+                                 "components/laundry/test"
+                                 "components/person/test"
+                                 "components/property/test"
+                                 "components/vehicle/test"]}
 
             :poly {:main-opts ["-m" "polylith.clj.core.poly-cli.core"]
                    :extra-deps {polyfy/polylith
                                 {:git/url   "https://github.com/polyfy/polylith"
-                                 :sha       "INSERT_LATEST_SHA_HERE"
+                                 :sha       "f54afe3e4e38f41eae8c29d4fe65616eba79c7a6"
                                  :deps/root "projects/poly"}}}}}

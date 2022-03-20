@@ -34,3 +34,10 @@ projects/**/pom.xml
 
 # Calva VS Code Extension
 .calva/output-window/output.calva-repl
+
+# Cached files
+.clj-kondo/.cache
+.lsp/.cache
+
+# Data
+db/

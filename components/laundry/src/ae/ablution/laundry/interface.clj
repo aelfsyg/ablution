@@ -1,0 +1,12 @@
+(ns ae.ablution.laundry.interface)
+
+(defn record-laundry-arrival [date-time property bags])
+;; (defn ingest-batch [batch])
+(defn seperate [batch buckets])
+(defn add-items ([batch items]) ([batch bucket items]))
+(defn ingest-batch [date-time property bags item-list])
+(defn add-batch-deadline [batch date])
+(defn wash-batch [batch])
+(defn rewash-batch [batch])
+(defn iron-batch [batch])
+(defn dispatch-batch [batch])
