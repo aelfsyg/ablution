@@ -1,4 +1,9 @@
-(ns ae.ablution.property.core)
+(ns ae.ablution.property.core
+  (:require
+   [ae.ablution.db.interface :as db]
+   [ae.ablution.base.interface :as base]
+   [ae.ablution.address.interface :as i.address]
+   [clojure.string :as string]))
 
 #_{:clj-kondo/ignore [:unused-namespace]}
 (require
@@ -16,16 +21,21 @@
  '[ae.ablution.person.contact :as-alias contact]
  '[ae.ablution.person.title :as-alias person.title]
  '[ae.ablution.property :as-alias property]
+ '[ae.ablution.property.type :as-alias property.type]
  '[ae.ablution.address :as-alias address]
  '[ae.ablution.vehicle :as-alias vehicle])
 
-(def animal-farm
-  {:xt/id :ae.ablution.entity.id/property-b380358ae43b
-   ::entity/type ::entity.type/property
-   ::ablu/address
-   {::address/first-line "Manor Farm"
-    ::address/second-line ""
-    ::address/postal-town "Polegate"
-    ::address/county "East Sussex"
-    ::address/postcode "BN26 1OI"
-    ::address/country "UK"}})
+(def property
+  {:xt/id base/entity-id
+   ::entity/type #{::entity.type/property}
+   ::property/name string?
+   ::property/type #{::property.type/holiday-home ::property.type/commercial
+                     ::property.type/domestic ::property.type/window-clean
+                     ::property.type/unknown ::property.type/enquiry}
+   ::ablu/address i.address/address?})
+
+(defn desc-property [{:keys [::property/name ::ablu/address]}]
+  (string/join " / " [name (i.address/desc-address address)]))
+
+(defn find-property [term]
+  (db/find-entity term ::ablu/property))

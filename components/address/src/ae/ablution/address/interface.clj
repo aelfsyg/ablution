@@ -1,4 +1,10 @@
 (ns ae.ablution.address.interface
-  (:require [ae.ablution.address.core :as c.address]))
+  (:require [ae.ablution.address.core :as core]
+            [ae.ablution.address.spec :as spec]))
 
-(def twentytwo-portobello c.address/twentytwo-portobello)
+(def county? spec/county?)
+(def postcode? spec/postcode?)
+(def country? spec/country?)
+(def address? spec/address?)
+
+(def desc-address core/desc-address)

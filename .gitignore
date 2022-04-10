@@ -38,6 +38,3 @@ projects/**/pom.xml
 # Cached files
 .clj-kondo/.cache
 .lsp/.cache
-
-# Data
-db/

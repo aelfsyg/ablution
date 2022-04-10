@@ -1,6 +1,6 @@
 (ns ae.ablution.customer.core
   (:require [xtdb.api :as xt]
-            [ae.ablution.db.core :as db]))
+            [ae.ablution.db.interface :as db]))
 
 #_{:clj-kondo/ignore [:unused-namespace]}
 (require
@@ -23,18 +23,3 @@
  '[ae.ablution.vehicle :as-alias vehicle])
 
 (defn put-customer! [customer] nil)
-
-(def orwell-capital
-  {:xt/id :ae.ablution.entity.id/customer-e78c5dd157a8
-   ::entity/type ::entity.type/customer
-   ::ablu/properties [:ae.ablution.entity.id/property-b380358ae43b]
-   ::ablu/persons [::entity.id/person-8891cec18a2c]})
-
-(xt/q (xt/db db/node)
-      '{:find [(pull cust [* {::ablu/properties [*]} {::ablu/persons [*]}])]
-        :where [[cust ::ablu/persons person]
-                [person ::person/name name]
-                [cust ::ablu/properties prop]
-                [prop ::ablu/address add]
-                [(get-in add [::address/first-line]) v]
-                [(= v "Manor Farm")]]})

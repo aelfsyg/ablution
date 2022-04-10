@@ -1,5 +1,12 @@
 (ns ae.ablution.person.core
-  (:require [ae.ablution.address.interface :as i.address]))
+  (:require [ae.ablution.address.interface :as i.address]
+            [ae.ablution.base.interface :as base]
+            [clojure.spec.alpha :as s]
+            [clojure.string :as string]
+            [spec-tools.data-spec :as ds]
+            [spec-tools.core :as st]
+            [ae.ablution.db.interface :as db]
+            [clojure.spec.gen.alpha :as gen]))
 
 #_{:clj-kondo/ignore [:unused-namespace]}
 (require
@@ -29,19 +36,6 @@
     ::person.title/desc "Ms"}
    {:xt/id ::person.title/miss
     ::person.title/desc "Miss"}])
-
-(def eric-arthur-blair
-  {:xt/id ::entity.id/person-8891cec18a2c
-   ::entity/type ::entity.type/person
-   ::entity/type-exp ::person
-   ::person/title ::person.title/mr
-   ::person/name
-   {::person/first-name "Eric"
-    ::person/middle-names ["Arthur"]
-    ::person/last-name "Blair"}
-   ::person/contact-address i.address/twentytwo-portobello
-   ::person/contacts {::contact/emails ["orwell@ingsoc.org"]
-                      ::contact/phone-numbers ["07777 777 777"]}})
 
 (defn add-email [] nil)
 (defn add-primary-email [] nil)

@@ -1,4 +1,8 @@
-(ns ae.ablution.address.core)
+(ns ae.ablution.address.core
+  (:require [clojure.spec.alpha :as s]
+            [spec-tools.data-spec :as ds]
+            [clojure.string :as string]
+            [clojure.spec.gen.alpha :as gen]))
 
 #_{:clj-kondo/ignore [:unused-namespace]}
 (require
@@ -25,10 +29,7 @@
     ::county/full-name "Norfolk"
     ::county/names ["Norfolk" "Norf"]}])
 
-(def twentytwo-portobello
-  {::address/first-line "22 Portobello Road"
-   ::address/second-line ""
-   ::address/postal-town "London"
-   ::address/county "London"
-   ::address/postcode "W11 3DH"
-   ::address/country "UK"})
+(defn desc-address
+  [{::address/keys [first-line second-line postal-town county postcode country]}]
+  (string/join " / " [first-line second-line postal-town
+                      county postcode country]))

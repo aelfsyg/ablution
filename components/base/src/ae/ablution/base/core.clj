@@ -3,6 +3,7 @@
             [spec-tools.data-spec :as ds]
             [clojure.spec.alpha :as s]
             [clojure.spec.gen.alpha :as gen]
+            [java-time :as time]
             [spec-tools.core :as st]))
 
 #_{:clj-kondo/ignore [:unused-namespace]}
@@ -11,6 +12,7 @@
  '[ae.ablution.address :as-alias address]
  '[ae.ablution.address.county :as-alias county]
  '[ae.ablution.agent :as-alias ablu.agent]
+ '[ae.ablution.confirm :as-alias confirm]
  '[ae.ablution.customer :as-alias customer]
  '[ae.ablution.entity :as-alias entity]
  '[ae.ablution.entity.id :as-alias entity.id]
@@ -23,19 +25,38 @@
  '[ae.ablution.person.contact :as-alias contact]
  '[ae.ablution.person.title :as-alias person.title]
  '[ae.ablution.property :as-alias property]
+ '[ae.ablution.schedule :as-alias schedule]
+ '[ae.ablution.schedule.job :as-alias job]
+ '[ae.ablution.supply :as-alias supply]
+ '[ae.ablution.supply.wp :as-alias supply.wp]
  '[ae.ablution.vehicle :as-alias vehicle])
 
 (defn random-48 []
   (-> (random-uuid) .toString (string/split #"-") last))
 
-(defn entity-id
-  ([prefix] (entity-id prefix false))
-  ([prefix full?]
-   (let [pre (if (string? prefix) prefix (name prefix))
-         id (if full? (str (random-uuid)) (random-48))]
-     (->> [pre id]
-          (string/join "-")
-          (keyword "ae.ablution.entity.id")))))
+(defn create-entity-id [prefix id]
+  (let [pre (if (string? prefix) prefix (name prefix))]
+    (->> [pre id]
+         (string/join "-")
+         (keyword "ae.ablution.entity.id"))))
+
+(defn entity-id [prefix & [{:keys [full? suffix]}]]
+  (if suffix
+    (create-entity-id prefix suffix)
+    (create-entity-id prefix (if full? (str (random-uuid)) (random-48)))))
+
+(defn suffix [id]
+  (-> id
+      name
+      (string/split #"-")
+      rest
+      (#(string/join "-" %))))
+
+(defn legacy-entity-id [prefix id]
+  (create-entity-id prefix id))
+
+(defn parse-legacy-id [id]
+  (-> id str (string/split #"-") last))
 
 (def year?
   (st/spec {:spec int?
@@ -58,4 +79,21 @@
             :type :local-date
             :description ""
             :gen (fn [] (gen/fmap #(apply time/local-date %)
-                                  (s/gen (s/cat :year year? :month month? :day day?))))}))
+                                  (s/gen (s/cat :year year?
+                                                :month month?
+                                                :day day?))))}))
+
+(def date-time? nil)
+
+(def entity-id?
+  (st/spec {:name ::entity/id
+            :spec (s/and keyword? #(= (namespace %) "ae.ablution.entity.id"))
+            :gen (fn [] (gen/fmap #(entity-id %) (gen/string-alphanumeric)))}))
+
+(def entity-type?
+  #{::entity.type/address ::entity.type/booking ::entity.type/batch
+    ::entity.type/confirmation ::entity.type/customer ::entity.type/employee
+    ::entity.type/person ::entity.type/property ::entity.type/vehicle})
+
+(defn active? [e]
+  (not (::ablu/inactive? e)))

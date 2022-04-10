@@ -1,0 +1,45 @@
+{:mvn/repos {"central" {:url "https://repo1.maven.org/maven2/"}
+             "clojars" {:url "https://clojars.org/repo"}}
+
+ :deps {poly/address {:local/root "../../components/address"}
+        poly/base {:local/root "../../components/base"}
+        poly/confirm {:local/root "../../components/confirm"}
+        poly/customer {:local/root "../../components/customer"}
+        poly/db {:local/root "../../components/db"}
+        poly/dossier {:local/root "../../components/dossier"}
+        poly/employee {:local/root "../../components/employee"}
+        poly/laundry {:local/root "../../components/laundry"}
+        poly/legacy {:local/root "../../components/legacy"}
+        poly/person {:local/root "../../components/person"}
+        poly/property {:local/root "../../components/property"}
+        poly/supply {:local/root "../../components/supply"}
+        poly/user {:local/root "../../components/user"}
+        poly/vehicle {:local/root "../../components/vehicle"}
+
+        poly/rest {:local/root "../../bases/rest"}
+
+        org.clojure/clojure {:mvn/version "1.11.0"}
+        org.clojure/tools.deps.alpha {:mvn/version "0.12.985"}}
+
+ :ring {:init ae.ablution.rest.api/init
+        :destroy ae.ablution.rest.api/destroy
+        :handler ae.ablution.rest.api/app
+        :port 6003}
+
+ :aliases {:test {:extra-paths []
+                  :extra-deps  {}}
+
+           :aot {:extra-paths ["classes"]
+                 :main-opts ["-e" "(compile,'clojure.realworld.rest-api.main)"]}
+
+           :uberjar {:extra-deps {uberdeps/uberdeps {:mvn/version "0.1.10"}}
+                     :main-opts ["-m" "uberdeps.uberjar"
+                                 "--aliases" "aot"
+                                 "--main-class" "clojure.realworld.rest_api.main"]}
+
+           :ring {:extra-deps {furkan3ayraktar/polylith-clj-deps-ring
+                               {:git/url "https://github.com/furkan3ayraktar/polylith-clj-deps-ring.git"
+                                :sha "7bb68846bb8a200a486a2886f1af95984538ec25"
+                                :deps/root "projects/core"}}
+
+                  :main-opts ["-m" "polylith.clj-deps-ring.cli.main" "start"]}}}

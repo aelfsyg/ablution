@@ -1,35 +1,67 @@
 {:aliases  {:dev {:extra-paths ["development/src"]
-                  :extra-deps {cider/cider-nrepl {:mvn/version "0.18.0"}
+                  :extra-deps {aero/aero {:mvn/version "1.1.6"}
+                               cider/cider-nrepl {:mvn/version "0.28.3"}
+                               clj-jwt/clj-jwt {:mvn/version "0.1.1"}
+                               clj-time/clj-time {:mvn/version "0.15.2"}
                                clojure.java-time/clojure.java-time {:mvn/version "0.3.3"}
+                               com.draines/postal {:mvn/version "2.0.5"}
+                               com.github.seancorfield/honeysql {:mvn/version "2.2.868"}
+                               com.github.seancorfield/next.jdbc {:mvn/version "1.2.772"}
+                               com.microsoft.sqlserver/mssql-jdbc {:mvn/version "11.1.0.jre17-preview"}
+                               com.taoensso/timbre {:mvn/version "5.2.1"}
                                com.xtdb/xtdb-core {:mvn/version "1.20.0"}
                                com.xtdb/xtdb-jdbc {:mvn/version "1.20.0"}
                                com.xtdb/xtdb-lucene {:mvn/version "1.20.0"}
-                               com.xtdb/xtdb-rocksdb {:mvn/version "1.20.0"}
+                               compojure/compojure {:mvn/version "1.6.2"}
+                               crypto-password/crypto-password {:mvn/version "0.3.0"}
                                danlentz/clj-uuid {:mvn/version "0.1.9"}
+                               honeysql/honeysql {:mvn/version "1.0.461"}
                                metosin/spec-tools {:mvn/version "0.10.5"}
-                               org.clojure/clojure {:mvn/version "1.11.0-rc1"}
-                               org.clojure/test.check {:mvn/version "0.9.0"}
-                               org.clojure/tools.deps.alpha {:mvn/version "0.12.1003"}
-                               org.postgresql/postgresql {:mvn/version "42.2.18"}
+                               org.apache.lucene/lucene-analyzers-common {:mvn/version "8.11.1"}
+                               org.clojure/clojure {:mvn/version "1.11.0"}
+                               org.clojure/data.json {:mvn/version "2.4.0"}
+                               org.clojure/java.jdbc {:mvn/version "0.7.12"}
+                               org.clojure/test.check {:mvn/version "1.1.1"}
+                               org.clojure/tools.deps.alpha {:mvn/version "0.13.1168"}
+                               org.postgresql/postgresql {:mvn/version "42.3.3"}
+                               org.xerial/sqlite-jdbc {:mvn/version "3.36.0.3"}
+
                                poly/address {:local/root "components/address"}
                                poly/base {:local/root "components/base"}
+                               poly/confirm {:local/root "components/confirm"}
                                poly/customer {:local/root "components/customer"}
                                poly/db {:local/root "components/db"}
+                               poly/dossier {:local/root "components/dossier"}
                                poly/employee {:local/root "components/employee"}
                                poly/laundry {:local/root "components/laundry"}
+                               poly/legacy {:local/root "components/legacy"}
                                poly/person {:local/root "components/person"}
                                poly/property {:local/root "components/property"}
-                               poly/vehicle {:local/root "components/vehicle"}}}
+                               poly/supply {:local/root "components/supply"}
+                               poly/user {:local/root "components/user"}
+                               poly/vehicle {:local/root "components/vehicle"}
+
+                               poly/rest {:local/root "bases/rest"}
+
+                               ring-logger-timbre/ring-logger-timbre {:mvn/version "0.7.6"}
+                               ring/ring-jetty-adapter {:mvn/version "1.9.5"}
+                               ring/ring-json {:mvn/version "0.5.1"}
+                               fogus/ring-edn {:mvn/version "0.3.0"}
+                               slugger/slugger {:mvn/version "1.0.1"}
+                               tick/tick {:mvn/version "0.5.0-RC5"}}}
 
             :nREPL {:extra-deps {nrepl/nrepl {:mvn/version "0.9.0"}
-                                 cider/piggieback {:mvn/version "0.4.2"}}}
+                                 cider/piggieback {:mvn/version "0.5.3"}}}
 
-            :test {:extra-paths ["components/address/test"
+            :test {:extra-deps  {org.clojure/test.check {:mvn/version "1.1.1"}}
+                   :extra-paths ["components/address/test"
                                  "components/base/test"
+                                 "components/confirm/test"
                                  "components/customer/test"
                                  "components/db/test"
                                  "components/employee/test"
                                  "components/laundry/test"
+                                 "components/legacy/test"
                                  "components/person/test"
                                  "components/property/test"
                                  "components/vehicle/test"]}
@@ -37,5 +69,5 @@
             :poly {:main-opts ["-m" "polylith.clj.core.poly-cli.core"]
                    :extra-deps {polyfy/polylith
                                 {:git/url   "https://github.com/polyfy/polylith"
-                                 :sha       "f54afe3e4e38f41eae8c29d4fe65616eba79c7a6"
+                                 :sha       "e874e809aa9d3cecaa0540376bd2875f99b37372"
                                  :deps/root "projects/poly"}}}}}
