@@ -3,13 +3,13 @@
             [xtdb.codec :as codec])
   (:import org.apache.lucene.analysis.Analyzer
            [org.apache.lucene.document Document Field$Store StringField TextField]
-           [org.apache.lucene.index
-            IndexWriter Term]
+           [org.apache.lucene.index IndexWriter Term]
            [org.apache.lucene.search Query TermQuery]
-           org.apache.lucene.analysis.custom.CustomAnalyzer
-           [org.apache.lucene.analysis.core LowerCaseFilterFactory]
-           [org.apache.lucene.analysis.standard StandardTokenizerFactory]
-           [org.apache.lucene.analysis.ngram NGramTokenizerFactory]))
+           ;; org.apache.lucene.analysis.custom.CustomAnalyzer
+           ;; [org.apache.lucene.analysis.core LowerCaseFilterFactory]
+           ;; [org.apache.lucene.analysis.standard StandardTokenizerFactory]
+           ;; [org.apache.lucene.analysis.ngram NGramTokenizerFactory]
+           ))
 
 #_{:clj-kondo/ignore [:unused-namespace]}
 (require

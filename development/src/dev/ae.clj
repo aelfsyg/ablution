@@ -1,12 +1,12 @@
 (ns dev.ae
   (:require [ae.ablution.address.core :as addr]
-            [ae.ablution.base.core :as core]
             [ae.ablution.base.core :as base]
             [ae.ablution.customer.core :as cust]
             [ae.ablution.db.core :as db]
             [ae.ablution.db.indexer :as idx]
             [ae.ablution.person.core :as pers]
             [ae.ablution.property.core :as prop]
+            [ae.ablution.schedule.core :as sch]
             [ae.ablution.supply.core :as supp]
             [ae.ablution.rest.main :as main]
             [clojure.java.io :as io]
@@ -184,3 +184,8 @@
 ({#{#{1} #{2 3}} 2} #{#{2 3} #{1}})
 
 ;; Pick a small domain and finish it.
+
+(-> (sch/find-all-jobs-api)
+    second
+    first
+    (select-keys #{::ablu/date ::schedule/arrival-time ::schedule/departure-time}))

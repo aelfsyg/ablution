@@ -2,7 +2,7 @@
   (:require [ae.ablution.base.core :as core]
             [ae.ablution.base.env :as env]))
 
-(def env env/env)
+(def envar env/env)
 
 (def year? core/year?)
 (def month? core/month?)

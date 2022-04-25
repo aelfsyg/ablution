@@ -37,6 +37,7 @@
                                poly/legacy {:local/root "components/legacy"}
                                poly/person {:local/root "components/person"}
                                poly/property {:local/root "components/property"}
+                               poly/schedule {:local/root "components/schedule"}
                                poly/supply {:local/root "components/supply"}
                                poly/user {:local/root "components/user"}
                                poly/vehicle {:local/root "components/vehicle"}

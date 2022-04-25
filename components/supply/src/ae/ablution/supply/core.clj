@@ -183,8 +183,8 @@
            :where [[?supp ::entity/type ::entity.type/supply]
                    [?supp ::property/id ?prop]
                    [?cust ::ablu/properties ?prop]
-                   [(base/active? ?prop)]
-                   [(base/active? ?cust)]]})])
+                   [(ae.ablution.base.interface/active? ?prop)]
+                   [(ae.ablution.base.interface/active? ?cust)]]})])
 
 ;;
 

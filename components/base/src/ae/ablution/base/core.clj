@@ -3,7 +3,8 @@
             [spec-tools.data-spec :as ds]
             [clojure.spec.alpha :as s]
             [clojure.spec.gen.alpha :as gen]
-            [java-time :as time]
+            ;; [java-time :as time]
+            [tick.core :as t]
             [spec-tools.core :as st]))
 
 #_{:clj-kondo/ignore [:unused-namespace]}
@@ -78,7 +79,7 @@
   (st/spec {:spec #(instance? java.time.LocalDate %)
             :type :local-date
             :description ""
-            :gen (fn [] (gen/fmap #(apply time/local-date %)
+            :gen (fn [] (gen/fmap #(apply t/date %)
                                   (s/gen (s/cat :year year?
                                                 :month month?
                                                 :day day?))))}))

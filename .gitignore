@@ -38,3 +38,8 @@ projects/**/pom.xml
 # Cached files
 .clj-kondo/.cache
 .lsp/.cache
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

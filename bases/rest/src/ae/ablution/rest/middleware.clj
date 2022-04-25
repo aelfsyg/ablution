@@ -26,7 +26,7 @@
            :body   {:errors {:other [message]}}})))))
 
 (defn create-access-control-header [origin]
-  (let [allowed-origins (or (base/env :allowed-origins) "")
+  (let [allowed-origins (or (ae.ablution.base.interface/envar :allowed-origins) "")
         origins (str/split allowed-origins #",")
         allowed-origin (some #{origin} origins)]
     {"Access-Control-Allow-Origin" origin ; allowed-origin ; *

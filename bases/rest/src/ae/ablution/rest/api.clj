@@ -14,8 +14,8 @@
             [ring.middleware.params :as pr]))
 
 (defroutes public-routes
-  (OPTIONS "/**"  h/options)
-  (GET "/api/health"  h/health)
+  (OPTIONS "/**" [] h/options)
+  (GET "/api/health" [] h/health)
   (GET "/api/supplies" [] h/supplies)
   (POST "/api/supplies" [] h/add-supplies)
   (GET "/api/jobs" [] h/jobs))

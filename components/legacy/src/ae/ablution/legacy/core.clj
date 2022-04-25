@@ -48,7 +48,7 @@
                   ::customer/name cust-name
                   ::ablu/properties [property]
                   ::ablu/persons [person]}]
-    {:xt/id (base/entity-id (string/join "-" [date prop job-type]))
+    {:xt/id (base/entity-id (string/join "-" ["job" date prop job-type]))
      ::ablu/date (tick/date date)
      ::schedule/arrival-time (-> (tick/date date) (tick/at arr-time))
      ::schedule/departure-time (-> (tick/date date) (tick/at dep-time))

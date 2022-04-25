@@ -1,6 +1,8 @@
 (ns ae.ablution.db.interface
   (:require [ae.ablution.db.core :as core]))
 
+(def start! core/start!)
+
 (def db-url core/db-url)
 (def node core/node)
 (def close core/close)

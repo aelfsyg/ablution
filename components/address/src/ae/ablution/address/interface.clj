@@ -8,3 +8,5 @@
 (def address? spec/address?)
 
 (def desc-address core/desc-address)
+
+(def counties core/counties)

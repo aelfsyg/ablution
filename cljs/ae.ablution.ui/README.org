@@ -1,1 +1,9 @@
-#+title: ae.ablution.ui
+#+title: æ/ablution.ui
+
+This is the Ablution frontend. It communicates with the backend API, through HTTP requests, and [[https://github.com/edn-format/edn][edn]] (~application/edn~) payloads.
+
+It is a Clojurescript app, using re-frame, and re-com components.
+
+The three important source files are: ~router.cljs~ for the high-level strucutre of the site, ~events.cljs~ for the event flow and control logic of the website, and ~views.cljs~ for the way that data is displayed.
+
+Whilst it is run using Shadow CLJS, the configuration uses a hybrid of ~shadow-cljs.edn~ and ~deps.edn~.

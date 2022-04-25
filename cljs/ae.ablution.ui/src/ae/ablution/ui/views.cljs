@@ -39,12 +39,13 @@
      :child [:a {:href (router/url-for ::bookings)} "Bookings"]]
     [rc/box :size "auto" :justify :center
      :child [:a {:href (router/url-for ::confirms)} "Confirms"]]
+    ;; [rc/box :size "auto" :justify :center
+    ;;  :child [:a {:href (router/url-for ::laundry)} "Laundry"]]
+    ;; [rc/box :size "auto" :justify :center
+    ;;  :child [:a {:href (router/url-for ::schedules)} "Schedules"]]
     [rc/box :size "auto" :justify :center
-     :child [:a {:href (router/url-for ::laundry)} "Laundry"]]
-    [rc/box :size "auto" :justify :center
-     :child [:a {:href (router/url-for ::schedules)} "Schedules"]]
-    [rc/box :size "auto" :justify :center
-     :child [:a {:href (router/url-for ::supplies)} "Supplies"]]]])
+     :child [:a {:href (router/url-for ::supplies)
+                 :on-click #(rf/dispatch [::events/reset-active-supply])} "Supplies"]]]])
 
 (defn header []
   [rc/v-box :children [[title] [links] [rc/gap :size "20px"]]])
@@ -190,7 +191,12 @@
     (when (empty? @model-regular) (reset! model-regular (into #{} (keys regular))))
     (when (empty? @model-irregular) (reset! model-irregular (into #{} (keys irregular))))
     [rc/v-box :children
-     [[supplies-row id s]
+     [[rc/h-box :children
+       [[supplies-row id s]
+        [rc/gap :size "1"]
+        [rc/md-circle-icon-button
+         :md-icon-name "zmdi-undo"
+         :on-click #(rf/dispatch [::events/reset-active-supply])]]]
       [rc/h-box :children
        [[breakdown s regular ::supply/regular]
         [breakdown s irregular ::supply/irregular]]]

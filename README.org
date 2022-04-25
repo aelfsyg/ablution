@@ -1,32 +1,14 @@
-#+TITLE: æ/Ablution
+#+TITLE: æ/ablution
 
-This is Ablution, a business management application.
+This is Ablution, a holiday-property management application.
 
-It uses the Polylith.
-
-XTDB, queried using Datalog.
-
-* Tasks
-** TODO Fix specs
-** TODO Learn how to use spec-tools
-** TODO Add function to enter new persons, properties, customers, and batches.
-** TODO Try full-text search
-** TODO Add batch ingress functions
-** TODO Add batch state management
-** TODO Add batch tracking capabilities
-** TODO Add batch deadline management
-* User stories
-** TODO As a laundry manager, I want to record laundry arrives so they can be tracked.
-** TODO As a laundry manager, I want to separate batched into piles so they can be moved independently.
-** TODO As a laundry manager, I want to change the state of a batch
-** TODO As an office member, I want to be able to find a list of laundry batches without deadlines so they may each be assigned one.
-** TODO As a office member, I want to be able to check that an item doesn't exist in the database before I put it.
-* Plan
-** Internal
-*** Confirmations
-*** Supplies
-*** Laundry
-*** Bookings
-** External
-*** Bookings
-*** Laundry
+* Tech
+It uses [[https://polylith.gitbook.io/polylith/][Polylith]].
+A Shadow CLJS / re-frame / re-com frontend, and a Compojure / Ring / XTDB backend.
+The two ends communicate using [[https://github.com/edn-format/edn][edn]], as ~application/edn~.
+Deployed on AWS using Elastic Beanstalk and Docker Compose.
+* Demo
+The Ablution UI currently only allows a user to interact with the Supplies domain.
+The demo runs on an in-memory database.
+* Future plans
+Expose the Confirms functionality in the UI.

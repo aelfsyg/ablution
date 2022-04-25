@@ -1,0 +1,14 @@
+version: '1'
+services:
+  backend:
+    build: projects/backend
+    ports:
+      - 6003:6003
+  frontend:
+    build: cljs/ae.ablution.ui
+    working_dir: /srv
+    ports:
+      - 8000:80
+    volumes:
+      - ./cljs/ae.ablution.ui:/srv
+    command: shadow-cljs server
