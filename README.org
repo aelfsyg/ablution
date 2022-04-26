@@ -3,10 +3,12 @@
 This is Ablution, a holiday-property management application.
 
 * Tech
-It uses [[https://polylith.gitbook.io/polylith/][Polylith]].
-A Shadow CLJS / re-frame / re-com frontend, and a Compojure / Ring / XTDB backend.
-The two ends communicate using [[https://github.com/edn-format/edn][edn]], as ~application/edn~.
-Deployed on AWS using Elastic Beanstalk and Docker Compose.
+It uses [[https://polylith.gitbook.io/polylith/][Polylith]], with a Shadow CLJS / re-frame / re-com frontend, and a Compojure / Ring / XTDB backend. The two ends communicate using [[https://github.com/edn-format/edn][edn]], as ~application/edn~, and it is deployed on AWS using Elastic Beanstalk and Docker Compose.
+
+Try it for yourself:
+#+begin_src
+docker compose up
+#+end_src
 * Demo
 The Ablution UI currently only allows a user to interact with the Supplies domain.
 The demo runs on an in-memory database.
