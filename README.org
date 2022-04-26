@@ -9,6 +9,7 @@ Try it for yourself:
 #+begin_src
 docker compose up
 #+end_src
+... and visit ~http://localhost:8000~.
 * Demo
 The Ablution UI currently only allows a user to interact with the Supplies domain.
 The demo runs on an in-memory database.
